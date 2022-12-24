@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <style>
+        .main{
+            height: 80vh;
+            margin: 10vh 10% 0px 10%;
+            background-color: black;
+            border-radius: 30px;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: top;
+            box-shadow: 0px 0px 15px 3px black;
+
+        }
+        .cont{
+            height: 100%;
+            display: flex;
+            flex-direction:column ;
+            justify-content: center;
+            align-items:center ;
+            font-size: 6vw;
+            color: white;
+            text-shadow: 0px 0px 10px  rgb(0, 0, 0);
+            background-clip: text;
+        }
+        .submain{
+            background-color: rgba(0, 0, 0, 0.203);
+            border-radius: 30px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0px 0px 15px black;
+
+        }
+        .submain:hover{
+            transition-duration: 0.2s;
+            box-shadow: 0px 0px 30px black;
+        }
+        .time-text{
+            display: inline-block;
+        }
+        .time{
+            display: inline-block;
+        }
+        .time-cont{
+            display: inline-block;
+            margin: 10px;
+            display: flex;
+            justify-content:center ;
+            
+        }
+        .date-cont{
+            display: flex;
+            justify-content: center;
+            margin: 10px;
+            
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+
+        <div class="cont">
+            <div class="submain">
+                <div class="time-cont">
+                    <div class="time-text">Time is -&nbsp;</div>
+                    <div class="time"></div>
+                </div>
+                <div class="date-cont">
+                    <div class="date-text">The Date is -&nbsp;</div>
+                    <div class="date">da</div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+    <script>
+        
+
+        //time
+        setInterval(() => {
+        let dat=new Date();
+        let dat1=dat.getHours();
+        let dat2=dat.getMinutes();
+        let dat3=dat.getSeconds();
+
+        let newSec
+        function seccc(dat31) {
+            if (dat31<10) {
+                newSec='0'+dat31
+            }
+            else{
+                newSec=dat31
+            }
+        }
+        seccc(dat3)
+
+        let dat4=dat.getMilliseconds();
+        let time= dat1+':'+dat2+':'+newSec
+        let divTime=document.querySelectorAll('.time')
+        divTime[0].innerText=time
+        }, 1000);
+        
+        //date
+        let nwdt=new Date();
+        let mth= nwdt.getMonth()+1
+        let present=nwdt.getDate()+'/'+mth+'/'+nwdt.getFullYear()
+        let ddate=document.querySelectorAll('.date')
+        ddate[0].innerText=present
+
+        //time pre load
+        let fdiv=document.querySelectorAll('.time')
+        fdiv[0].append(nwdt.getHours()+':'+nwdt.getMinutes()+':'+nwdt.getSeconds());
+
+        //back ground image
+        let bgi=document.querySelectorAll('.main')
+        if (nwdt.getHours()>20) {
+            bgi[0].style.backgroundImage="url('https://wallpaperaccess.com/full/2113857.jpg')";
+            document.querySelectorAll('.submain')[0].style.border='2px solid white';
+            document.body.style.backgroundImage='linear-gradient(90deg,rgb(50, 50, 215),rgb(45, 44, 44))'
+        }
+        else if (nwdt.getHours()<5) {
+            bgi[0].style.backgroundImage="url('https://wallpaperaccess.com/full/2113857.jpg')";
+            document.querySelectorAll('.submain')[0].style.border='2px solid white';
+            document.body.style.backgroundImage='linear-gradient(90deg,rgb(50, 50, 215),rgb(45, 44, 44))'
+        }
+        else{
+            bgi[0].style.backgroundImage="url(https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bW9ybmluZ3xlbnwwfHwwfHw%3D&w=1000&q=80)";
+            document.body.style.backgroundImage='linear-gradient(90deg,yellow,orange)'
+        }
+    </script>
+</body>
+</html>
